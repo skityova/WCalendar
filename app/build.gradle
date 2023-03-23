@@ -6,6 +6,10 @@ android {
     namespace 'com.corylab.wcalendar'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.corylab.wcalendar"
         minSdk 28
