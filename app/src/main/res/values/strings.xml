@@ -3,4 +3,5 @@
 
     <string name="main_button">Кнопка</string>
     <string name="main_title">Женский календарь</string>
+    <string name="transmittion_button">Кнопка перехода</string>
 </resources>
