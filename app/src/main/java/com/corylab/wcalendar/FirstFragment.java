@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.corylab.wcalendar.databinding.FragmentFirstBinding;
 
@@ -28,6 +29,18 @@ public class FirstFragment extends Fragment {
             String transmitted = result.getString("text2");
             binding.transmittedText.setText(transmitted);
         });
+
+
+        Toast.makeText(getActivity(), "STATUS: CREATED", Toast.LENGTH_SHORT).show();
+        Log.i("FirstFragment", "STATUS: CREATED");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Toast.makeText(getActivity(), "STATUS: STARTED", Toast.LENGTH_SHORT).show();
+        Log.i("FirstFragment", "STATUS: STARTED");
     }
 
     @Override
@@ -35,6 +48,29 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Toast.makeText(getActivity(), "STATUS: RESUMED", Toast.LENGTH_SHORT).show();
+        Log.i("FirstFragment", "STATUS: RESUMED");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getActivity(), "STATUS: CREATED", Toast.LENGTH_SHORT).show();
+        Log.i("FirstFragment", "STATUS: CREATED");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        Toast.makeText(getActivity(), "STATUS: DESTROYED", Toast.LENGTH_SHORT).show();
+        Log.i("FirstFragment", "STATUS: DESTROYED");
     }
 
     @Override
