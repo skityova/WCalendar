@@ -3,7 +3,8 @@
 
     <string name="main_button">Кнопка</string>
     <string name="main_title">Женский календарь</string>
-    <string name="transmittion_button">Кнопка перехода</string>
+    <string name="transmittion_button">Следующий цикл</string>
+    <string name="return_button">Вернуться</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

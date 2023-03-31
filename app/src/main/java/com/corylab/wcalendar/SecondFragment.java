@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import com.corylab.wcalendar.databinding.FragmentFirstBinding;
 import com.corylab.wcalendar.databinding.FragmentSecondBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
@@ -36,12 +41,25 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
 
         Bundle args = this.getArguments();
-        String text = args.getString("text1");
-        binding.transmittedText.setText(text);
+        String dateString = args.getString("lastCycle");
 
-        binding.intentButton.setOnClickListener((v) -> {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM", Locale.US);
+        try {
+            Date date = dateFormat.parse(dateString);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, 28);
+            String resultDate = dateFormat.format(calendar.getTime());
+            binding.transmittedText.setText("Дата начала следующего цикла: " + resultDate);
+        }
+        catch (Exception e) {
+            binding.transmittedText.setText("Дата введена неверно");
+            e.printStackTrace();
+        }
+
+        binding.returnButton.setOnClickListener((v) -> {
             Bundle result = new Bundle();
-            result.putString("text2", binding.editText.getText().toString());
+            result.putString("info", binding.transmittedText.getText().toString());
             getParentFragmentManager().setFragmentResult("results",
                     result);
             getParentFragmentManager().popBackStack();;

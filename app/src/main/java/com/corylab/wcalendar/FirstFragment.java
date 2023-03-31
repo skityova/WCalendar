@@ -26,7 +26,7 @@ public class FirstFragment extends Fragment {
 
         getParentFragmentManager().setFragmentResultListener("results",
                 this, (requestKey, result) -> {
-            String transmitted = result.getString("text2");
+            String transmitted = result.getString("info");
             binding.transmittedText.setText(transmitted);
         });
 
@@ -76,16 +76,14 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         binding.titleText.setText("Женский календарь");
-        binding.editText.setHint("Введите текст");
         binding.grassImage.setImageResource(R.drawable.img_1);
-        binding.button.setText(R.string.main_button);
 
-        binding.intentButton.setOnClickListener(v -> {
-            Log.i("clickButton","Кнопка нажата 2");
+        binding.calcButton.setOnClickListener(v -> {
+            Log.i("calcButton","Кнопка нажата");
 
             Fragment fragment = new SecondFragment();
             Bundle args = new Bundle();
-            args.putString("text1", binding.editText.getText().toString());
+            args.putString("lastCycle", binding.lastCycleEditText.getText().toString());
             fragment.setArguments(args);
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -93,10 +91,6 @@ public class FirstFragment extends Fragment {
             fragmentTransaction.replace(R.id.fragment_container_view, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-        });
-
-        binding.button.setOnClickListener(v -> {
-            Log.i("clickButton","Кнопка нажата");
         });
     }
 }
